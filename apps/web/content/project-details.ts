@@ -137,8 +137,6 @@ export const projectDetails: Record<string, ProjectDetail> = {
         ],
         learning:
           "다형성이 제품 자체라면 스키마와 렌더러를 타입별로 미리 닫으면 안 된다. 공통 셸과 타입별 내용을 분리해야 새 블록을 추가하면서도 같은 공간 경험을 유지할 수 있다.",
-        limitation:
-          "타입마다 탭, 스키마, 액션, AI 정의 설정이 반복되었고 공통 패키지로 분리한 타입도 일부뿐이었다. 열린 타입 체계를 유지하는 비용을 충분히 줄이지 못했다.",
       },
       {
         id: "spatial-complexity",
@@ -150,8 +148,6 @@ export const projectDetails: Record<string, ProjectDetail> = {
         ],
         learning:
           "composition은 렌더 구조를 정리할 수 있지만 제품의 문제 정의까지 대신해 주지는 않는다. 데이터 흐름이 복잡해질수록 무엇을 위한 공간인지 먼저 닫혀 있어야 한다.",
-        limitation:
-          "노트, 코드 작업 공간, 3D, block-as-app 같은 정의가 동시에 열려 있었다. 문제의 경계가 흐린 상태에서 모듈화만으로 복잡도를 이기려 했던 것이 가장 큰 한계였다.",
       },
     ],
   },

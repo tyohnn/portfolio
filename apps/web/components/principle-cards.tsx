@@ -29,11 +29,7 @@ const icons = {
 export function PrincipleCards() {
   return (
     <section id="principles" className="scroll-mt-8">
-      <h2 className="mb-1 text-lg font-medium tracking-tight">Principles</h2>
-      <p className="mb-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-        복잡한 도메인을 신뢰할 수 있는 기록으로 만들고, 변경을 안전하게 반복할
-        수 있는 구조를 선호합니다.
-      </p>
+      <h2 className="mb-6 text-lg font-medium tracking-tight">Principles</h2>
 
       <div className="grid gap-4 sm:grid-cols-2">
         {principles.map((principle, index) => {

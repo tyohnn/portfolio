@@ -5,7 +5,12 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { Badge } from "@workspace/ui/components/badge"
 
+import { EssayMarkdown } from "@/components/essay-markdown"
 import { Typeset } from "@/components/typeset"
+import {
+  getMarkdownOutline,
+  readEssayArticle,
+} from "@/content/essay-article"
 import { essays, getEssay } from "@/content/essays"
 
 type WritingPageProps = {
@@ -42,6 +47,13 @@ export default async function WritingPage({ params }: WritingPageProps) {
     notFound()
   }
 
+  const article = await readEssayArticle(essay.id)
+  const outline = article
+    ? getMarkdownOutline(article).filter((heading) => heading.level === 2)
+    : essay.sections.map((section) => ({
+        id: section.id,
+        title: section.title,
+      }))
   const essayIndex = essays.findIndex((item) => item.id === essay.id)
   const previousEssay = essays[essayIndex - 1]
   const nextEssay = essays[essayIndex + 1]
@@ -96,29 +108,37 @@ export default async function WritingPage({ params }: WritingPageProps) {
       <div className="mt-10 grid items-start gap-12 lg:grid-cols-[minmax(0,42rem)_14rem] lg:gap-16">
         <article id="article" className="min-w-0 scroll-mt-8">
           <Typeset preset="docs" className="max-w-none">
-            <p className="lead">{essay.body}</p>
-
-            {essay.sections.map((section) => (
-              <section key={section.id} id={section.id} className="scroll-mt-8">
-                <h2>{section.title}</h2>
-                {section.paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-                {section.points ? (
-                  <ul>
-                    {section.points.map((point) => (
-                      <li key={point}>{point}</li>
+            {article ? (
+              <EssayMarkdown>{article}</EssayMarkdown>
+            ) : (
+              <>
+                <p className="lead">{essay.body}</p>
+                {essay.sections.map((section) => (
+                  <section
+                    key={section.id}
+                    id={section.id}
+                    className="scroll-mt-8"
+                  >
+                    <h2>{section.title}</h2>
+                    {section.paragraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
                     ))}
-                  </ul>
-                ) : null}
-              </section>
-            ))}
-
-            <blockquote>
-              {essay.closing.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </blockquote>
+                    {section.points ? (
+                      <ul>
+                        {section.points.map((point) => (
+                          <li key={point}>{point}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </section>
+                ))}
+                <blockquote>
+                  {essay.closing.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </blockquote>
+              </>
+            )}
           </Typeset>
         </article>
 
@@ -127,7 +147,7 @@ export default async function WritingPage({ params }: WritingPageProps) {
             이 글에서
           </p>
           <ol className="mt-3 space-y-2.5 text-sm leading-snug">
-            {essay.sections.map((section, index) => (
+            {outline.map((section, index) => (
               <li key={section.id}>
                 <a
                   href={`#${section.id}`}

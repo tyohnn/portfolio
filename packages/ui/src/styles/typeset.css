@@ -423,6 +423,51 @@
       text-align: end;
     }
 
+    /* Article tables: wrap in-column, stay inside the measure, read as a grid. */
+    &:where(.typeset-table) {
+      overflow-x: auto;
+      margin-block-start: var(--typeset-flow);
+      border: 1px solid var(--typeset-rule);
+      border-radius: var(--radius, 0.5em);
+      background: color-mix(
+        in oklab,
+        var(--color-muted, currentColor) 40%,
+        transparent
+      );
+    }
+    &:where(.typeset-table table) {
+      width: 100%;
+      max-width: 100%;
+      table-layout: fixed;
+      margin-block-start: 0;
+      border-block-end: 0;
+    }
+    &:where(.typeset-table :is(th, td)) {
+      white-space: normal;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      padding-inline-start: 0.75em;
+      border-inline-end: 1px solid var(--typeset-rule);
+    }
+    &:where(.typeset-table :is(th, td):last-child) {
+      border-inline-end: 0;
+    }
+    &:where(.typeset-table thead th) {
+      white-space: normal;
+      background: color-mix(
+        in oklab,
+        var(--color-muted, currentColor) 85%,
+        transparent
+      );
+    }
+    &:where(.typeset-table tbody tr:nth-child(even) :is(td, th)) {
+      background: color-mix(
+        in oklab,
+        var(--color-muted, currentColor) 28%,
+        transparent
+      );
+    }
+
     /* Blocks inside list items keep the list's tighter rhythm. */
     &:where(li > blockquote, li > table, li > figure) {
       margin-block-start: 0.5em;

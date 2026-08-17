@@ -62,7 +62,7 @@ export const principles: Principle[] = [
     label: "보안",
     title: "서버 보안에 집착하는 엔지니어",
     description:
-      "인가받지 않은 요청이 통과하지 못하도록, 시스템의 경계마다 경비병을 둡니다. 데이터 파이프라인에 defense in depth를 구축하고, 각 경계는 이전 단계의 출력을 믿지 않습니다. DB의 deny-all RLS는 그 최후의 보루입니다.",
+      "인가받지 않은 요청이 통과하지 못하도록, 시스템의 경계마다 경비병을 둡니다. 데이터 파이프라인에 defense in depth를 구축하고, 각 경계는 이전 단계의 출력을 믿지 않습니다.",
     practices: ["Defense in depth", "Server authorization", "deny-all RLS"],
     evidence: [{ label: "ssota", href: "#ssota" }],
   },

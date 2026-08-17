@@ -1,7 +1,8 @@
 # Writing
 
-홈의 Writing 카드는 `/writing/[slug]` 독립 아티클로 연결한다. 공개 글은 1인칭
-기술 회고로 쓰고, 노션 문서는 판단의 맥락을 복원하는 근거로만 사용한다.
+홈의 Writing 카드는 `/writing/[slug]` 독립 아티클로 연결한다. 카드 메타는
+`apps/web/content/essays.ts`에 두고, 본문은 `apps/web/content/writing/*.md`에
+노션 원문을 한 문단씩 옮긴다. 축약하지 않는다.
 
 ## data-model
 
